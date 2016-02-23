@@ -1,7 +1,15 @@
-var radius=0;
-var grow=true;
 var canvas=document.getElementById("canvas");
 var c=canvas.getContext("2d");
+var logo=newImage().src="logo_dvd.jpg";
+var x=200;
+var y=0;
+/*
+1=up right
+2=down right
+3=down left
+4=up left
+*/
+var direction=2;
 var requestId;
 
 c.fillStyle="#00BFFF";
@@ -14,21 +22,38 @@ function clear(){
 function draw(){
     clear();
     c.beginPath();
-    c.arc(canvas.width/2,canvas.height/2,radius,0,2*Math.PI);
-    c.fill();
-    c.stroke();
+    c.drawImage(logo,x,y,60,40);
     c.closePath();
-    if(grow==true && radius<canvas.width/2 && radius<canvas.height/2){
-        radius=radius+1;
+    if(direction==2){
+	x=x+1;
+	y=y+1;
     }else{
-        if(radius==canvas.width/2 || radius==canvas.height/2){
-            grow=false;
-        }
-        if(radius==0){
-            grow=true;
-            radius=2;
-        }
-        radius=radius-1;
+	if(direction==3){
+	x=x-1;
+	y=y+1;
+	}else{
+	    if(direction==4){
+		x=x+1;
+		y=y-1;
+	    }else{
+		if(durection==1){
+		    x=x-1;
+		    y=y-1;
+		}
+	    }
+	}
+    }
+    if(y==canvas.height){
+	direction=4;
+    }
+    if(x==canvas.width){
+	direction=3;
+    }
+    if(y==0){
+	direction=2;
+    }
+    if(x==0){
+	direction=1;
     }
     requestId=window.requestAnimationFrame(draw);
 }
