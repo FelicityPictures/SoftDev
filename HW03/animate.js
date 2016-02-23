@@ -20,18 +20,15 @@ function draw(){
     c.closePath();
     if(grow==true && radius<canvas.width/2 && radius<canvas.height/2){
         radius=radius+1;
-        console.log("radius++");
     }else{
         if(radius==canvas.width/2 || radius==canvas.height/2){
             grow=false;
-            console.log("grow=false");
         }
         if(radius==0){
             grow=true;
             radius=2;
         }
         radius=radius-1;
-        console.log("radius--");
     }
     requestId=window.requestAnimationFrame(draw);
 }

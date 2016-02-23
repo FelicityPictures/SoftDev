@@ -2,6 +2,7 @@ var radius=0;
 var grow=true;
 var canvas=document.getElementById("canvas");
 var c=canvas.getContext("2d");
+var requestId;
 
 c.fillStyle="#00BFFF";
 c.strokeStyle="#2E9AFE";
@@ -32,6 +33,12 @@ function draw(){
         radius=radius-1;
         console.log("radius--");
     }
-    window.requestAnimationFrame(draw);
+    requestId=window.requestAnimationFrame(draw);
 }
+
+function stop(){
+    requestId=window.cancelAnimationFrame(requestId);
+}
+
 document.getElementById("start").addEventListener("click",draw);
+document.getElementById("stop").addEventListener("click",stop);
