@@ -1,18 +1,22 @@
 var canvas=document.getElementById("canvas");
 var c=canvas.getContext("2d");
+var radius=0;
+var grow=true;
 var logo=new Image(600,400)
 logo.src="logo_dvd.jpg";
 var x=200;
 var y=0;
 var up = false;
 var right = true;
-var requestId;
+var requestIdSS,requestIdC;
+c.fillStyle="#00BFFF";
+c.strokeStyle="#2E9AFE";
 
 function clear(){
     c.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function draw(){
+function drawSS(){
     clear();
     c.beginPath();
     c.drawImage(logo,x,y,60,40);
@@ -41,12 +45,43 @@ function draw(){
             right=true;
         }
     }
-    requestId=window.requestAnimationFrame(draw);
+    requestIdSS=window.requestAnimationFrame(drawSS);
 }
 
-function stop(){
-    requestId=window.cancelAnimationFrame(requestId);
+function stopSS(){
+    requestIdSS=window.cancelAnimationFrame(requestIdSS);
 }
 
-document.getElementById("start").addEventListener("click",draw);
-document.getElementById("stop").addEventListener("click",stop);
+function drawC(){
+    clear();
+    c.beginPath();
+    c.arc(canvas.width/2,canvas.height/2,radius,0,2*Math.PI);
+    c.fill();
+    c.stroke();
+    c.closePath();
+    if(grow==true && radius<canvas.width/2 && radius<canvas.height/2){
+        radius=radius+1;
+        console.log("radius++");
+    }else{
+        if(radius==canvas.width/2 || radius==canvas.height/2){
+            grow=false;
+            console.log("grow=false");
+        }
+        if(radius==0){
+            grow=true;
+            radius=2;
+        }
+        radius=radius-1;
+        console.log("radius--");
+    }
+    requestIdC=window.requestAnimationFrame(drawC);
+}
+
+function stopC(){
+    requestIdC=window.cancelAnimationFrame(requestIdC);
+}
+
+document.getElementById("startCircle").addEventListener("click",drawC);
+document.getElementById("stopCircle").addEventListener("click",stopC);
+document.getElementById("startScreen").addEventListener("click",drawSS);
+document.getElementById("stopScreen").addEventListener("click",stopSS);
