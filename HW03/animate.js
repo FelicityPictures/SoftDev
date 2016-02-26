@@ -1,5 +1,3 @@
-var requestIdSS;
-
 function drawSS(){
     var canvas=document.getElementById("canvas");
     var c=canvas.getContext("2d");
@@ -9,6 +7,7 @@ function drawSS(){
     var y=0;
     var up = false;
     var right = true;
+    var requestIdSS;
     var drawLogo=function drawLogo(){
         c.clearRect(0, 0, canvas.width, canvas.height);
         c.beginPath();

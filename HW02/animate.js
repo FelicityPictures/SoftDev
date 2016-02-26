@@ -1,5 +1,3 @@
-var requestIdC;
-
 function drawC(){
     var canvas=document.getElementById("canvas");
     var c=canvas.getContext("2d");
@@ -7,6 +5,7 @@ function drawC(){
     var grow=true;
     c.fillStyle="#00BFFF";
     c.strokeStyle="#2E9AFE";
+    var requestIdC;
     var drawCircle=function drawCircle(){
         c.clearRect(0, 0, canvas.width, canvas.height);
         c.beginPath();
