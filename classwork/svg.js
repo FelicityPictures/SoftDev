@@ -1,35 +1,43 @@
-var pic = document.getElementById("vimage");
-
 function draw(){
-    var r =  0;
-    var requestID;
+    var pic = document.getElementById("vimage");
+    var r = 1;
+    var IntervalID;
     var grow = true;
     while(pic.lastChild){
-	pic.removeChild(pic.lastChild);
+	      pic.removeChild(pic.lastChild);
     }
     var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
     c.setAttribute("cx",250);
     c.setAttribute("cy",250);
     c.setAttribute("r",r);
     c.setAttribute("fill","red");
-    c.setAttribute("stroke","blue");
+    c.setAttribute("stroke","black");
     pic.appendChild(c);
-    if(grow==true && r     <pic.width/2 && r     <pic.height/2){
-        r     =r     +1;
-    }else{
-        if(r     ==pic.width/2 || r==pic.height/2){
+    var animate = function animate(){
+        var x = document.getElementsByTagName("circle")[0];
+        x.setAttribute("r",r);
+        if(grow==true){
+            r=r+1;
+      //      console.log("r++");
+        }else{
+            r=r-1;
+     //       console.log("r--");
+        }
+   //     console.log(pic.style.width/2);
+        if(r>=250 || r>=250){
             grow=false;
+   //         console.log("grow=false");
+        }else{
+            if(r<=0){
+                grow=true;
+    //            console.log("grow=true");
+            }
         }
-        if(r==0){
-            grow=true;
-            r=2;
-        }
-        r=r-1;
-    }
-    requestID=window.requestAnimationFrame(draw);
-    console.log("yes");
+    };
     var stop = function stop(){
-	window.cancelAnimationFrame(requestID);
+	      IntervalID = clearInterval(IntervalID);
     }
-//  document.getElementById("stopCircle").addEventListener("click",stopC);
-    draw();
+    document.getElementById("stopScreen").addEventListener("click",stop);
+    IntervalID=window.setInterval(animate,16);
+}
+document.getElementById("startScreen").addEventListener("click",draw);
