@@ -1,4 +1,9 @@
-.chart div {
+.chart div{
+  font: 10px sans-serif;
+  color: white;
+  margin: 1px;
+  text-align: right;
+  padding: 3px;
   background-color: steelblue;
-  height: 50px;
+  height:20px
 }
