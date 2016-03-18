@@ -1,6 +1,5 @@
-/*
 var data = [4,8,15,16,23,42];
-
+/*
 var chart = d3.select(".chart");
 
 var bar = chart.selectAll("div");
@@ -19,13 +18,17 @@ return d;
 */
 
 
+//to scale your bars
+var foo = d3.scale.linear()
+    .domain([0,d3.max(data)])
+    .range([0,420])
 
-var data = [4,8,15,16,23,42];
+//same as abovefirst block of stuff
 d3.select(".chart")
     .selectAll("div")
     .data(data)
     .enter().append("div")
     .style("width",function(d){
-	return d*10+"px"; })
+	return foo(d) + "px"; })
     .text(function(d){
 	return d; });
