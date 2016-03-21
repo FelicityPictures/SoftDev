@@ -81,11 +81,11 @@ var foo = d3.scale.linear()
     .domain([0,d3.max(delegates)])
     .range([0,1300])
 
-//same as abovefirst block of stuff
+//same as above first block of stuff
 d3.select(".chart")
     .selectAll("div")
     .data(stateNames)
-    .enter().append("div")
+    .enter().append("div").transition()
     .style("width",function(d){
 	      return foo(delegates[stateNames.indexOf(d)]) + "px"; })
     .text(function(d){
