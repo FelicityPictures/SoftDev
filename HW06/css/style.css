@@ -1,0 +1,54 @@
+.chart div{
+  font: 10px sans-serif;
+  color: white;
+  margin: 1px;
+  text-align: right;
+  padding: 2px;
+  height:30px;
+  width:0px;
+}
+
+.container{
+    font: 14px sans-serif;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 5px;
+    height: 90px;
+    width: 150px;
+    float: right;
+    text-align: center;
+    margin-right: 444px;
+}
+
+.steelblue{
+    font: 15px sans-serif;
+    color: #4682B4;
+    text-align: middle;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.gray{
+    font: 15px sans-serif;
+    color: #808080;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.d{
+    color: blue;
+}
+
+.button{
+    font: 15px sans-serif;
+    font-weight: bold;
+    border: 3px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    height: 20px;
+    width: 90px;
+    float: right;
+    margin-top: -50px;
+    text-align: center;
+    margin-right: 100px;
+}
