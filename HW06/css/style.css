@@ -10,7 +10,7 @@
 
 .container{
     font: 14px sans-serif;
-    border: 1px solid blue;
+    border: 1px solid black;
     border-radius: 5px;
     padding: 5px;
     height: 90px;
@@ -46,7 +46,6 @@
     border-radius: 5px;
     padding: 5px;
     height: 20px;
-    width: 90px;
     float: right;
     margin-top: -50px;
     text-align: center;

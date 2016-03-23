@@ -5,6 +5,36 @@ function clear(elementID){
     }
 }
 
+function title(title){
+    var t = document.getElementById("d");
+    t.innerHTML = title + " Delegates per State";
+    if(title=="Democratic"){
+        t.style.color="blue";
+    }else{
+        t.style.color="red";
+    }
+}
+
+function key(x){
+var k = document.getElementById("button");
+    if(x=="red"){
+        k.innerHTML="View Democrats";
+        k.style.borderColor="blue";
+    }else{
+        k.innerHTML="View Republicans";
+        k.style.borderColor="red";
+    }
+}
+
+function button(x){
+var k = document.getElementById("alot");
+    if(x=="red"){
+        k.style.color="#A13434";
+    }else{
+        k.style.color="#4682B4";
+    }
+}
+
 function RtoD(){
     var data = [
         //first in dictionary is Clinton, second is Sanders,third is unallotted
@@ -86,6 +116,9 @@ function RtoD(){
    
     //clear div
     clear("chart");
+    title("Democratic");
+    key("blue");
+    button("blue");
 
     //to scale your bars
     var foo = d3.scale.linear()
@@ -110,8 +143,8 @@ function RtoD(){
         });
 
 
-    document.getElementById("DtoR").removeEventListener('click',RtoD);
-    document.getElementById("DtoR").addEventListener('click',DtoR);
+    document.getElementById("button").removeEventListener('click',RtoD);
+    document.getElementById("button").addEventListener('click',DtoR);
 }
 
 function DtoR(){
@@ -154,10 +187,13 @@ function DtoR(){
     }
 
     clear("chart");
+    title("Republican");
+    key("red");
+    button("red");
 
     var foo = d3.scale.linear()
         .domain([0,d3.max(delegates)])
-        .range([0,1300])
+        .range([0,433])
 
     d3.select(".chart")
         .selectAll("div")
@@ -170,13 +206,13 @@ function DtoR(){
 	          return d + ": " + delegates[stateNames.indexOf(d)]; })
         .style("background-color",function(d){
             if(alot_name.indexOf(d)!=-1){
-                return "#4682B4";
+                return "#A13434";
             }else{
                 return "#808080";
             }
         });
 
-    document.getElementById("DtoR").removeEventListener('click',DtoR);
-    document.getElementById("DtoR").addEventListener('click',RtoD);
+    document.getElementById("button").removeEventListener('click',DtoR);
+    document.getElementById("button").addEventListener('click',RtoD);
 }
 DtoR();
