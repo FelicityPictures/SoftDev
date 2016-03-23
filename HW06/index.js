@@ -110,6 +110,7 @@ function RtoD(){
         });
 
 
+    document.getElementById("DtoR").removeEventListener('click',RtoD);
     document.getElementById("DtoR").addEventListener('click',DtoR);
 }
 
@@ -136,33 +137,46 @@ function DtoR(){
 		                "nebraska","west virginia","oregon","washington",
 		                "california", "montana", "new jersey", "new mexico", "south dakota"]
 
-    var foo = d3.scale.linear()
-        .domain([0,d3.max(ulot)])
-        .range([0,1300])
+    var delegates = [];
+    for(var i = 0;i<alot.length;i++){
+        delegates.push(alot[i]);
+    }
+    for(var i = 0;i<ulot.length;i++){
+        delegates.push(ulot[i]);
+    }
+
+    var stateNames = [];
+    for(var i = 0;i<alot_name.length;i++){
+        stateNames.push(alot_name[i]);
+    }
+    for(var i = 0;i<ulot_name.length;i++){
+        stateNames.push(ulot_name[i]);
+    }
 
     clear("chart");
 
+    var foo = d3.scale.linear()
+        .domain([0,d3.max(delegates)])
+        .range([0,1300])
+
     d3.select(".chart")
         .selectAll("div")
-        .data(alot)
-        .data(ulot)
-        .enter().append("div")
-//.transition()
+        .data(stateNames)
+        .enter().append("div").transition()
         .style("width", function(d){
-            if(alot_name.indexOf(d)!=null){
-            console.log(""+foo(alot[alot_name.indexOf(d)]));
-	              return foo(alot[alot_name.indexOf(d)]) + "px";
-            }else{
-                return foo(ulot[ulot_name.indexOf(d)]) + "px";
-            }
-        })
+            console.log(d);
+	          return foo(delegates[stateNames.indexOf(d)]) + "px"; })
         .text(function(d){
-            var s;
-            if(alot_name.indexOf(d)!=null){
-	              s = alot[alot_name.indexOf(d)];
+	          return d + ": " + delegates[stateNames.indexOf(d)]; })
+        .style("background-color",function(d){
+            if(alot_name.indexOf(d)!=-1){
+                return "#4682B4";
             }else{
-                s = ulot[ulot_name.indexOf(d)];
+                return "#808080";
             }
-	          return d + ": " + s; })
+        });
+
+    document.getElementById("DtoR").removeEventListener('click',DtoR);
+    document.getElementById("DtoR").addEventListener('click',RtoD);
 }
-RtoD();
+DtoR();
