@@ -52,7 +52,6 @@ def tenthTry():
     #prints 
 
 
-password = "Butts!3"
 numbers = "1234567890"
 symbols = ".?!&#,;:-_*"
 def passwordCheck():
@@ -62,7 +61,7 @@ def passwordCheck():
     else:
         print "no"
 
-def passwordStrength():
+def passwordStrength(password):
     nums = [1 if x in UC_Letters else 2 if x in numbers else 3 if x in symbols else 0 for x in password]
     #print nums
     if 1 in nums and 2 in nums and 0 in nums and 3 in nums:
@@ -75,4 +74,5 @@ def passwordStrength():
         else:
             print sum(nums)/(len(nums)/10)
 
-passwordStrength()
+p = "Bunnies!3"
+passwordStrength(p)
