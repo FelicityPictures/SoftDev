@@ -24,3 +24,6 @@ def difference(a,b):
     if a[i] not in b
     ]
 print difference(g,g)
+
+def symDif(a,b):
+    return [a[i]
