@@ -7,9 +7,10 @@ def fxName(x):
     return lambda: x.func_name
 
 @tiempo
+#tiempo would be applied but not fxName
 @fxName
 def double():
-    return str(91*2)
+    return 22
 
 test = double()
 print test
