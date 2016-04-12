@@ -1,3 +1,4 @@
+"""
 def make_bold(fn):
     return lambda : "<b>" + fn() + "</b>"
 
@@ -12,19 +13,21 @@ def hello():
 helloHTML = hello()
 
 print helloHTML
+"""
 #-----------------------------------------------------------#
 import time
 
-def track(x):
+def inWhatTime(x):
     t = time.time()
-    def inner(*arg):
-        return x.func_name + "(" +  x(*arg) + ")"
-    runtime = time.time()-t
-    return inner + "time: " + runtime
+    return lambda *arg: x(*arg) + "\n" + "Time to run is: " + str(time.time() - t)
 
-@track
+def whatIsThisFunction(x):
+    return lambda *arg: x.func_name  + str(arg) + " yields " + x(*arg)
+
+@inWhatTime
+@whatIsThisFunction
 def double(string):
     return string*2
 
-test = double()
+test = double("meow")
 print test
