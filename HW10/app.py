@@ -4,6 +4,8 @@ import utils
 app = Flask(__name__)
 
 @app.route("/login",methods=["GET","POST"])
+@utils.timed
+@utils.named
 def loginScreen():
     if request.method == "GET":
         return render_template("login.html")
@@ -11,7 +13,7 @@ def loginScreen():
         first = request.form['firstName']
         last = request.form['lastName']
         button = request.form['button']
-        if utils.authenticate(fn=first,ln=last):
+        if utils.authenticate(first,last):
             return render_template("Narnia.html")
         else:
             error = "Invalid username and/or password."
