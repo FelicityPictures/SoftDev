@@ -27,3 +27,12 @@ var makeIncrementer = function(){
     }
     return lambda;
 }
+
+var adder = function(){
+    var counter=0;
+    function lambda(n){
+	counter=counter+n;
+	return counter;
+    }
+    return lambda;
+}
